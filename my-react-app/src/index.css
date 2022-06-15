@@ -25,6 +25,7 @@ code {
 
 .selected {
   background-color: grey;
+  cursor: pointer;
 }
 
 .forecast {
