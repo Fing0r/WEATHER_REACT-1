@@ -4,8 +4,10 @@ import STORAGE from '../js/storage';
 
 
 const defaultCity = 'london';
+const defaultSavedCities = STORAGE.getsavedCities() ?? [];
+const defaultCurrentCity = STORAGE.getCurrentCity() ?? defaultCity;
 
-function savedCities(state = STORAGE.getsavedCities() ?? [], action) {
+function savedCities(state = defaultSavedCities, action) {
     switch (action.type) {
         case TOGGLE_CITY:
             const currentCity = {
@@ -26,7 +28,7 @@ function savedCities(state = STORAGE.getsavedCities() ?? [], action) {
     }
 }
 
-function currentCity(state = STORAGE.getCurrentCity() ?? defaultCity, action) {
+function currentCity(state = defaultCurrentCity, action) {
     switch (action.type) {
         case SET_CITY:
             return action.city
