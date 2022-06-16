@@ -14,7 +14,7 @@ export const nowTabActive = {'Now': true};
 export const detailsTabActive = {'Details': true};
 export const forecastTabActive = {'Forecast': true};
 
-export function TabContainer(props) {
+export function TabContainer() {
 const [ activeTab, setActiveTab ] = useState(nowTabActive)
 const currentCity = useSelector((state) => state.currentCity);
 

@@ -24,9 +24,13 @@ export function SearchForm() {
     
     return (
       <div >
-        <form>
-          <input type="search" placeholder="name of city" onChange={saveCity}/>
-          <button onClick={() => isCityExist(formValue)} type="button">search</button>
+        <form onSubmit={(e) => {
+          e.preventDefault()
+          isCityExist(formValue)
+          setFormValue('')
+          }}>
+          <input type="search" placeholder="name of city" value={formValue} onChange={saveCity}/>
+          <button type="submit">search</button>
         </form>
       </div>
     )

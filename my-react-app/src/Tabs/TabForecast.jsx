@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import { useState, useEffect } from 'react'
 import { GET_URL } from '../js/response';
 
@@ -47,14 +48,14 @@ export function TabForecast(props) {
 
   function ForecastItem(props) {
     const {info} = props;
-
+    console.log(info)
     const iconURL = `http://openweathermap.org/img/wn/${info.weather[0].icon}.png`
     return(
       <li>
         <div>
             <div>
               <p></p>
-              <p>12:00</p>
+              <p>{format(info.dt, 'HH:mm')}</p>
             </div>
             <div>
               <p>Temperature: <span>{info.main.temp}</span></p>

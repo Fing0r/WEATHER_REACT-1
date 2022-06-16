@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { GET_URL } from '../js/response';
+import format from 'date-fns/format';
 
 
 export function TabDetails(props) {
@@ -18,7 +19,7 @@ export function TabDetails(props) {
       }
   
     }, [currentCity])
-  
+    console.log(city)
     if(city && isActive) {
       return (
         <div className='box'>
@@ -27,8 +28,8 @@ export function TabDetails(props) {
             <li>Temperature: <span>{city.main.temp}</span></li>
             <li>Feels like: <span>{city.main.feels_like}</span></li>
             <li>Weather: <span>{city.weather[0].main}</span></li>
-            <li>Sunrise: <span></span></li>
-            <li>Sunset: <span></span></li>
+            <li>Sunrise: <span>{format(city.sys.sunrise, 'HH:mm')}</span></li>
+            <li>Sunset: <span>{format(city.sys.sunset, 'HH:mm')}</span></li>
           </ul>
         </div>
       )

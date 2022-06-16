@@ -14,7 +14,7 @@
     )
   }
   
-export  function SavedCities(props) {
+export  function SavedCities() {
     const list = useSelector(state => state.savedCities)
     const dispatch = useDispatch()
 
