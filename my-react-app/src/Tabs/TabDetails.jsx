@@ -19,7 +19,6 @@ export function TabDetails(props) {
       }
   
     }, [currentCity])
-    console.log(city)
     if(city && isActive) {
       return (
         <div className='box'>

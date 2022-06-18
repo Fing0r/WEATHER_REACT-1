@@ -1,7 +1,8 @@
  import { CityContext } from "../js/context";
  import { useDispatch, useSelector } from "react-redux";
- import { setCurrentCity } from '../Redux/action'
+ import { setCurrentCity, getStats } from '../Redux/action'
  import { useEffect } from "react";
+import store from "../js/store";
  
  function SavedCitiesItem(props) {
     const {name} = props
@@ -26,11 +27,13 @@ export  function SavedCities() {
     function showSavedCity(e) {
       if(e.target.tagName === 'LI') {
         const cityName = e.target.textContent
+
         dispatch(setCurrentCity(cityName))
+        dispatch(getStats(cityName))
         localStorage.setItem('cityName', cityName)
       }
     }
-
+    console.log(store.getState())
     const currentList = list.map(item => 
       <SavedCitiesItem  
       name={item.name} 

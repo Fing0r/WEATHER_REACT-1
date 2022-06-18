@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { setCurrentCity } from '../Redux/action';
+import { setCurrentCity, getStats } from '../Redux/action';
 
 export function SearchForm() {
   const [formValue, setFormValue] = useState('')
@@ -14,7 +14,12 @@ export function SearchForm() {
 
     const response = await fetch(url)
     
-    response.ok ? dispatch(setCurrentCity(value)) : dispatch(setCurrentCity(''));
+    if(response.ok) {
+      dispatch(setCurrentCity(value));
+      dispatch(getStats(value))
+    } else {
+      dispatch(setCurrentCity(''));
+    }
   }
   
     function saveCity(event) {

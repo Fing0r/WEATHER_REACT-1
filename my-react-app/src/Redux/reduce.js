@@ -1,4 +1,4 @@
-import {TOGGLE_CITY, SET_CITY} from './action'
+import {TOGGLE_CITY, SET_CITY, GET_STATS} from './action'
 import { combineReducers } from 'redux';
 import STORAGE from '../js/storage';
 
@@ -37,9 +37,27 @@ function currentCity(state = defaultCurrentCity, action) {
     }
 }
 
+function userStats(state = {}, action) {
+    const currentCity = action.city;
+    switch(action.type) {
+        case GET_STATS:
+            const stateArr = Object.keys(state);
+            const newState = {...state};
+            if(stateArr.includes(currentCity)) {
+                newState[currentCity] += 1;
+            } else {
+                newState[currentCity] = 1;
+            }
+            return newState
+        default:
+            return state;
+    }
+}
+
 const weatherApp = combineReducers({
     currentCity,
-    savedCities
+    savedCities,
+    userStats
 })
 
 export default weatherApp
